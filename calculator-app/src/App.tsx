@@ -1,25 +1,14 @@
 import React from 'react';
 import './App.css';
-import { CalculatorProvider, useCalculator } from './Context/CalculatorContext';
+//import { CalculatorProvider } from './Context/CalculatorContext';
 import Button from './components/Button';
 import Display from './components/Display';
+// import { useCalculator } from './hooks/useCalculator';
+import { useCalculatorStore } from './store/calculatorStore';
 
 const Calculator: React.FC = () => {
-  const { input, setInput } = useCalculator();
 
-  const handleButtonClick = (value: string) => {
-    if (value === '=') {
-      try {
-        setInput(eval(input));
-      } catch (error) {
-        setInput('Error');
-      }
-    } else if (value === 'C') {
-      setInput('');
-    } else {
-      setInput(input + value);
-    }
-  };
+  const { input, handleButtonClick } = useCalculatorStore();
 
   return (
     <div className="calculator">
@@ -35,9 +24,9 @@ const Calculator: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <CalculatorProvider>
+    //<CalculatorProvider>
       <Calculator />
-    </CalculatorProvider>
+    //</CalculatorProvider>
   );
 };
 
